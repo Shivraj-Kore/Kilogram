@@ -4,7 +4,7 @@ from base import views
 from django.urls import path , include
 from django.conf import settings
 
-from account.views import register_view , login_view , logout_view
+from account.views import register_view , login_view , logout_view , account_search_view 
 
 from django.contrib.auth import views as auth_views
 
@@ -14,6 +14,7 @@ urlpatterns = [
     path('login' , login_view , name="login"),
     path('logout' , logout_view , name="logout"),
     path('register' , register_view , name="register"),
+    path('search' , account_search_view , name="search"),
 
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_reset/password_change_done.html'), 
         name='password_change_done'),

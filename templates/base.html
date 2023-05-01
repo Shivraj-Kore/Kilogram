@@ -9,42 +9,8 @@
     <title>LiveChatApp</title>
 </head>
 <body>
+    {% include 'header.html' %}
     
-    <div class="main">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">{{username}}</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li>
-                        <img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="{{request.user.profile_image.url}}" alt="pfp" width="40" height="40">
-                    </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href={% url 'home' %}>Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">logout</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href={% url 'register' %}>Register</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href={% url 'account:view' user_id=request.user.id %}>Account</a>
-                  </li>
-                </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-              </div>
-            </div>
-          </nav>
         {% block content %}
         
         {% endblock content %}

@@ -4,6 +4,7 @@ from django.contrib.auth import login , authenticate , logout
 
 from account.forms import RegistrationForm , AccountAuthenticationForm
 from account.models import Account
+import json
 
 def register_view(request , *args, **kwargs):
     user = request.user
@@ -102,3 +103,18 @@ def account_view(request , *args, **kwargs):
         context['is_friend']=is_friend
 
         return render(request , 'account/account.html' , context)
+    
+
+def account_search_view(request , *args, **kwargs):
+    context={}
+    if request.method == "GET":
+        search_query = request.GET.get("q")
+        if len(search_query) > 0 :
+            search_results = Account.objects.filter(email__icontains=search_query).filter(username__icontains=search_query).distinct()
+        user = request.user
+        accounts = []
+        for account in search_results:
+            accounts.append((account, False))
+        context['accounts'] = accounts
+
+    return render(request , 'account/search_results.html' , context)
